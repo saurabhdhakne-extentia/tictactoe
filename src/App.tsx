@@ -102,11 +102,11 @@ function App() {
       <div className="container">
         <h1 className='mx-auto  font-extrabold'>Tic Tac Toe</h1>
 
-        <ul className='mt-10 flex w-full '>
+        <ul className='mt-10 md:flex md:w-full w-full'>
           <Player name={PLAYERS.X} symbol='X' isActive={activePlayer === 'X' && true} onChangeName={handlePlayerNameChange} />
           <Player name={PLAYERS.O} symbol='O' isActive={activePlayer === 'O' && true} onChangeName={handlePlayerNameChange} />
         </ul>
-        <div className="flex">
+        <div className="md:flex">
           <ol className={`bg-indigo-500 rounded w-[340px] h-[340px] mx-auto mt-10`}>
             { (winner || hasDraw ) &&
             <div className="flex flex-col  items-center justify-center bg-indigo-950 bg-opacity-70 absolute w-[340px] h-[340px]">

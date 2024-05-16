@@ -19,7 +19,7 @@ export default function Player({name,symbol, isActive, onChangeName}:{name:strin
 
     return (
         <>
-            <li className={`${isActive && 'bg-indigo-800'} p-2 rounded text-sm mx-10`}>
+            <li className={`${isActive && 'bg-indigo-800'} p-2 rounded text-sm mx-10 mb-5 flex`}>
                 <span className={`${ isEditiing ? 'bg-red-400': 'bg-indigo-600' } px-5  rounded py-2`}>
                      <input type="text" value={playerName} disabled={!isEditiing} className={`bg-transparent w-24 focus:outline-none`} onChange={handleNameChange} />
                 </span>
