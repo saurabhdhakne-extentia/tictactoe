@@ -5,14 +5,16 @@
 //     [null, null, null]
 // ]
 
-export default function Board({onSelectSquare, board }:{onSelectSquare: any, board: any}) {
+import { BoardState, OnSelectSquareType } from "../types";
+
+export default function Board({onSelectSquare, board }:{onSelectSquare: OnSelectSquareType, board: BoardState}) {
 
     return (
         <>
-            {board.map((row:any, rowIndex:number) => (
+            {board.map((row, rowIndex) => (
                 <li key={rowIndex}>
                     <ol className="flex">
-                        {row.map((playerSymbol:any, colIndex:number) => (
+                        {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex} className="w-[100px] h-[100px] p-2">
                                 <button 
                                     onClick={()=>onSelectSquare(rowIndex, colIndex)} 

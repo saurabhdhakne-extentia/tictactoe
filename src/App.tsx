@@ -5,19 +5,20 @@ import Board from './components/Board'
 import Logs from './components/Logs'
 import { WINNING_COMBINATIONS } from './winning-combinations'
 import GameOver from './components/GameOver'
+import { GameTurnsType, BoardState, PlayersType } from './types';
 
-type BoardState = Array<Array<string | null>>;
 const INITIAL_GAME_BOARD: BoardState = [
   [null, null, null],
   [null, null, null],
   [null, null, null]
 ]
 
-const PLAYERS = {
+const PLAYERS: PlayersType = {
   X:'Player 1',
   O:'Player 2' 
 };
-function deriveActivePlayer(gameTurns: any) {
+
+function deriveActivePlayer(gameTurns: GameTurnsType) {
 
   let currentPlayer = 'X';
 
@@ -29,7 +30,7 @@ function deriveActivePlayer(gameTurns: any) {
 }
 
 
-function deriveWinner(gameBoard:any, player:any){
+function deriveWinner(gameBoard:BoardState, player:PlayersType){
   
   let winner;
   for (const combinations of WINNING_COMBINATIONS) {
@@ -45,7 +46,7 @@ function deriveWinner(gameBoard:any, player:any){
   return winner
 }
 
-function deriveGameBoard(gameTurns:any){
+function deriveGameBoard(gameTurns:GameTurnsType){
   
   let gameBoard = [...INITIAL_GAME_BOARD.map(array=>[...array])];
 
@@ -59,8 +60,8 @@ function deriveGameBoard(gameTurns:any){
 }
 
 function App() {
-  const [player, setPlayer]= useState<Record<string, string>>(PLAYERS)
-  const [gameTurns, setGameTurns] = useState<any>([])
+  const [player, setPlayer]= useState<PlayersType>(PLAYERS)
+  const [gameTurns, setGameTurns] = useState<GameTurnsType>(()=> [])
   // const [activePlayer, setActivePlayer] = useState('X')
 
   const activePlayer = deriveActivePlayer(gameTurns)
@@ -72,7 +73,7 @@ function App() {
   const hasDraw = gameTurns.length === 9 && !winner
   function handleSelectSquare(rowIndex: number, colIndex: number) {
     // setActivePlayer(()=>(activePlayer === 'X' ? 'O' : 'X' ))
-    setGameTurns((prevTurn: any) => {
+    setGameTurns((prevTurn: GameTurnsType) => {
       const currentPlayer = deriveActivePlayer(prevTurn);
 
       const updateTurns = [
@@ -89,10 +90,10 @@ function App() {
   }
 
   function handlePlayerNameChange(symbol:string, newName:string){
-    setPlayer((prevPlayer:any)=>{
+    setPlayer((prevPlayer:PlayersType)=>{
       return {
         ...prevPlayer,
-        [symbol]: [newName]
+        [symbol]: newName
       }
     })
   }

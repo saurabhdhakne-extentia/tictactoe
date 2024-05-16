@@ -1,4 +1,6 @@
-export default function GameOver({winner, handlRestartMatch}:{winner:string|undefined, handlRestartMatch:any}){
+import { HandleRestartMatchType } from "../types";
+
+export default function GameOver({winner, handlRestartMatch}:{winner:string|undefined, handlRestartMatch:HandleRestartMatchType}){
     return(
         <>
             <h1 className="text-indigo-200 font-extrabold">Game Over!</h1>

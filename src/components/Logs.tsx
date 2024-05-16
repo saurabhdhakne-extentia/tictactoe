@@ -1,4 +1,6 @@
-export default function Logs({turns}:{turns:[any]}){
+import { GameTurnsType } from "../types";
+
+export default function Logs({turns}:{turns:GameTurnsType}){
    return(
     <ol className="mt-10 w-[200px] min-h-10 bg-indigo-500 px-2 py-1 rounded">
         <h5 className="text-xl mb-2 font-bold">LOGS</h5>

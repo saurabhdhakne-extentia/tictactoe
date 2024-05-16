@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { onChangeNameType } from "../types"
 
 
-export default function Player({name,symbol, isActive, onChangeName}:{name:string, symbol:string, isActive:Boolean, onChangeName:any}) {
+export default function Player({name,symbol, isActive, onChangeName}:{name:string, symbol:string, isActive:Boolean, onChangeName:onChangeNameType}) {
     const [isEditiing, setIsEditing] = useState(false)
     const [playerName, setPlayerName] = useState(name)
 
@@ -19,8 +20,8 @@ export default function Player({name,symbol, isActive, onChangeName}:{name:strin
     return (
         <>
             <li className={`${isActive && 'bg-indigo-800'} p-2 rounded text-sm mx-10`}>
-                <span className='px-5 bg-indigo-600 rounded py-2'>
-                     <input type="text" value={playerName} disabled={!isEditiing} className="bg-transparent w-24 focus:outline-none" onChange={handleNameChange} />
+                <span className={`${ isEditiing ? 'bg-red-400': 'bg-indigo-600' } px-5  rounded py-2`}>
+                     <input type="text" value={playerName} disabled={!isEditiing} className={`bg-transparent w-24 focus:outline-none`} onChange={handleNameChange} />
                 </span>
                 <span className='px-4 py-2 bg-indigo-600 rounded mx-2'>
                     {symbol}
